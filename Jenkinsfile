@@ -11,30 +11,39 @@ pipeline{
         }
         stage('terraform init'){
             steps{
-                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
-                sh 'terraform init'
-              } 
-            }
-        }    
+                  sh 'terraform init'
+              }
+            }   
         stage('terraform plan'){
             steps{
-                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
-
-                sh 'terraform plan'
+                withCredentials([[
+                $class:'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'aws-jenkins-demo'
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID'
+                secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
+                    sh 'terraform plan'
               } 
             }   
         }
         stage('terraform apply'){
             steps{
-                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
-                sh 'terraform apply --auto-approve'
+                withCredentials([[
+                $class:'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'aws-jenkins-demo'
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID'
+                secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
+                    sh 'terraform apply --auto-approve'
               } 
             }      
         }
         stage('terraform destroy'){
             steps{
-                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
-                sh 'terraform apply --auto-approve'
+                withCredentials([[
+                $class:'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'aws-jenkins-demo'
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID'
+                secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
+                    sh 'terraform apply --auto-approve'
               }
             }         
         }
