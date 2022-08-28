@@ -18,8 +18,8 @@ pipeline{
             steps{
                 withCredentials([[
                 $class:'AmazonWebServicesCredentialsBinding',
-                credentialsId: 'aws-jenkins-demo'
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID'
+                credentialsId: 'aws-jenkins-demo',
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                 secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
                     sh 'terraform plan'
               } 
@@ -29,8 +29,8 @@ pipeline{
             steps{
                 withCredentials([[
                 $class:'AmazonWebServicesCredentialsBinding',
-                credentialsId: 'aws-jenkins-demo'
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID'
+                credentialsId: 'aws-jenkins-demo',
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                 secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
                     sh 'terraform apply --auto-approve'
               } 
@@ -40,8 +40,8 @@ pipeline{
             steps{
                 withCredentials([[
                 $class:'AmazonWebServicesCredentialsBinding',
-                credentialsId: 'aws-jenkins-demo'
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID'
+                credentialsId: 'aws-jenkins-demo',
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                 secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
                     sh 'terraform apply --auto-approve'
               }
