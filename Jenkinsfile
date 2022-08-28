@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Git clone'){
             steps{
-                git branch: 'main', url: 'https://github.com/eoyebami/terraform_pipeline_files.git'
+                git branch: 'main', url: 'https://github.com/eoyebami/terraform_pipeline.git'
             }
         }
         stage('terraform init'){
