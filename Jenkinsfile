@@ -28,12 +28,26 @@ pipeline{
             }   
         stage('terraform apply'){
             steps{
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: "aws-jenkins-demo",
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                ]]) {
                     sh 'terraform apply --auto-approve'
+                }   
               }
             }      
         stage('terraform destroy'){
             steps{
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: "aws-jenkins-demo",
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                ]]) {
                     sh 'terraform apply --auto-approve'
+                } 
               }         
             }
         }
