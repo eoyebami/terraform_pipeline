@@ -351,7 +351,7 @@ resource "aws_autoscaling_group" "asg" {
 #Attaching Auto Scaling Group
 resource "aws_autoscaling_attachment" "asg_attachment_bar" {
   autoscaling_group_name = aws_autoscaling_group.asg.id
-  lb_target_group_arn    = aws_lb_target_group.awsezzie_lb_tg.arn
+  alb_target_group_arn    = aws_lb_target_group.awsezzie_lb_tg.arn
 }
 #Create a hosted zone in Route 53
 data "aws_route53_zone" "awsezzie" {
